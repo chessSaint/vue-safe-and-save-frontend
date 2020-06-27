@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>vue-save-and-safe-frontend</title>
+    <style>
+      .bars{
+        width:60px;
+        height:60px;
+        position:fixed;
+        background-color: #455262;
+        top:0px;
+        cursor:pointer;
+        z-index:2;
+      }
+      .bars span{
+        display:block;
+        width:30px;
+        height:2px;
+        background:#fff;
+        position:absolute;
+        top:calc(50% - 1px);
+        left:calc(50% - 15px);
+        transition:.2s;
+      }
+
+
+      .bars span:nth-child(1){
+        transform:translateY(-10px);
+      }
+      .bars span:nth-child(3){
+        transform:translateY(10px);
+      }
+      .bars.active span:nth-child(1){
+        transform:translateY(0px) rotate(-45deg);/*（控制第一个span顺时针旋转45度）*/
+      }
+      .bars.active span:nth-child(3){
+        transform:translateY(0px) rotate(45deg);/*（控制第三个span逆时针旋转45度）*/
+      }
+      .bars.active span:nth-child(2){
+        transform:translateY(-100%);/*（控制第二个span隐藏）*/
+        opacity:0;
+      }/*（这样就可以形成一个关闭图标）*/
+
+      .nav{
+        height:60px;
+        width: 100%;
+        background:#455262;
+        padding:0px;
+        margin:0px;
+        transition:.5s;
+        position: fixed;
+        left: 60px;
+        top: 0px;
+        z-index: 2;
+      }
+      .nav.active{
+        transform:translateX(-600%);
+        transition:.5s;
+      }
+      .nav ul{
+        float:right;
+        list-style:none;
+        display: flex;
+        margin:0px;
+        padding: 0;
+        width: 100%;
+      }
+      .nav ul li a{
+        width: 120px;
+        line-height:60px;
+        font-size: 16px;
+        text-decoration:none;
+        text-align: center;
+        color:#fff;
+        padding: 0 20px;
+        display:block;
+      }
+
+      .nav ul li a:hover{
+        background:#262626;
+        color:#fff;
+      }
+      ul.sub-menu {
+        background-color: transparent;
+        border: none;
+        display: none;
+      }
+      #menu-item-has-children:hover ul.sub-menu {
+        display: block;
+      }
+
+      /*(这里用媒体查询来实现响应式的效果)*/
+      @media screen and (max-width:640px){
+        .nav{
+          height:100vh;/*（指的是在手机上视口有多高，这个就有多高）*/
+        }
+        .nav ul{
+          display:block;
+          width:100%;
+          text-align:center;
+          padding:0px;
+        }
+        .nav ul li{
+          border-right:none;
+          border-bottom:1px solid rgba(0,0,0 .2);
+        }
+      }
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WYbWDwS8NW7EuxFGqhdYlsF120PhYdSn"></script>
+  </head>
+  <body>
+    <div id="bars" class="bars">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav active">
+      <ul>
+        <li><a href="/"><i class="menu-icon fa-home"></i>首页</a></li>
+        <li id="menu-item-has-children" class="menu-item-has-children dropdown">
+          <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa-cogs"></i>功能服务</a>
+          <ul id="sub-menu" class="sub-menu children dropdown-menu">
+            <li><a href="#"><i class="fa-puzzle-piece"></i>数据接入</a></li>
+            <li><a href="/trafficSituation"><i class="fa-id-badge"></i>交通态势</a></li>
+            <li><a href="#"><i class="fa-bars"></i>微观跟踪</a></li>
+          </ul>
+        </li>
+        <li><a href="#"><i class="menu-icon fa-laptop"></i>软件下载</a></li>
+        <li><a href="#"><i class="menu-icon fa-laptop"></i>注册/登陆</a></li>
+        <li><a href="#contact"><i class="menu-icon fa-laptop"></i>联系</a></li>
+      </ul>
+    </div>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.js"></script>
+
+    <script>
+        //jquery的toggleClass()，该方法检查每个元素中指定的类。如果不存在则添加类，如果已设置则删除之。
+        $(".bars").click(function(){
+            $(".bars").toggleClass("active");
+            $(".nav").toggleClass("active");
+        });
+        // var bars = document.getElementById('bars');
+        // bars.addEventListener('click',function () {
+        //     $(".bars").toggleClass("active");
+        //     $(".nav").toggleClass("active");
+        // });
+        // bars.addEventListener('mouseover', function () {
+        //     $(".bars").toggleClass("active");
+        //     $(".nav").toggleClass("active");
+        // });
+
+    </script>
+  </body>
+</html>

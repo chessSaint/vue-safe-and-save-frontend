@@ -1,0 +1,92 @@
+.bars{
+  width:60px;
+  height:60px;
+  background:white;
+  position:fixed;
+  top:0px;
+  left: 10px;
+  cursor:pointer;
+  z-index:1;
+}
+.bars span{
+  display:block;
+  width:30px;
+  height:2px;
+  background:#262626;
+  position:absolute;
+  top:calc(50% - 1px);
+  left:calc(50% - 15px);
+  transition:.2s;
+}
+
+
+.bars span:nth-child(1){
+  transform:translateY(-10px);
+}
+.bars span:nth-child(3){
+  transform:translateY(10px);
+}
+.bars.active span:nth-child(1){
+  transform:translateY(0px) rotate(-45deg);/*（控制第一个span顺时针旋转45度）*/
+}
+.bars.active span:nth-child(3){
+  transform:translateY(0px) rotate(45deg);/*（控制第三个span逆时针旋转45度）*/
+}
+.bars.active span:nth-child(2){
+  transform:translateY(-100%);/*（控制第二个span隐藏）*/
+  opacity:0;
+}/*（这样就可以形成一个关闭图标）*/
+
+.nav{
+  width: 120px;
+  height:60px;
+  background:#fff;
+  padding:0px;
+  margin:0px;
+  transition:.5s;
+  position: absolute;
+  left: 10px;
+}
+.nav.active{
+  transform:translateY(-600%);
+  transition:.5s;
+}
+.nav ul{
+  float:right;
+  list-style:none;
+  margin:0px;
+  padding: 0;
+}
+.nav ul li{
+  border-bottom:1px solid rgba(0,0,0,.2);
+}
+.nav ul li:last-child{
+  border-bottom:none;
+}
+.nav ul li a{
+  line-height:60px;
+  text-decoration:none;
+  color:#262626;
+  padding:0 20px;
+  display:block;
+}
+.nav ul li a:hover{
+  background:#262626;
+  color:#fff;
+}
+/*(这里用媒体查询来实现响应式的效果)*/
+@media screen and (max-width:640px){
+  .nav{
+    height:100vh;/*（指的是在手机上视口有多高，这个就有多高）*/
+  }
+  .nav ul{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:0px;
+  }
+  .nav ul li{
+    border-right:none;
+    border-bottom:1px solid rgba(0,0,0 .2);
+  }
+}
