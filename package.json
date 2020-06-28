@@ -17,6 +17,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
     "@fortawesome/vue-fontawesome": "^0.1.10",
     "countup.js": "^2.0.5",
+    "echarts": "^4.8.0",
     "superfish": "^1.7.10",
     "vue": "^2.5.2",
     "vue-baidu-map": "^0.21.22",
